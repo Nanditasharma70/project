@@ -134,7 +134,7 @@ function RegistrationForm() {
 
 function Hero() {
   return (
-    <div className="relative bg-gradient-to-r from-rose-50 to-rose-100 pt-32 pb-20 bg-[url('hero.png')] bg-cover bg-center">
+    <div className="relative bg-gradient-to-r from-rose-50 to-rose-100 pt-32 pb-20 bg-[url('/hero.png')] bg-cover bg-center">
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
