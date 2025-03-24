@@ -157,41 +157,41 @@ function RegistrationForm() {
 function Hero() {
   return (
     <div className="relative bg-gradient-to-r from-rose-50 to-rose-100 pt-32 pb-20 bg-[url('/hero.png')] bg-cover bg-center">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-      >
-        <div className="text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-4xl font-bold text-rose-500 sm:text-5xl md:text-6xl"
-          >
-            Find Your Perfect Match
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="mt-3 max-w-md mx-auto text-base text-white sm:text-lg md:mt-5 md:text-xl md:max-w-3xl"
-          >
-            Join millions of happy couples who found their soulmate with HeartMatch. Start your journey to lasting love today.
-          </motion.p>
-          <RegistrationForm />
-        </div>
-      </motion.div>
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
-      >
-        <ChevronDown className="w-6 h-6 text-rose-600" />
-      </motion.div>
-    </div>
-
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+    >
+      <div className="text-center">
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="text-4xl font-bold text-rose-500 sm:text-5xl md:text-6xl"
+        >
+          Find Your Perfect Match
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mt-3 max-w-md mx-auto text-base text-white sm:text-lg md:mt-5 md:text-xl md:max-w-3xl"
+        >
+          Join millions of happy couples who found their soulmate with HeartMatch. Start your journey to lasting love today.
+        </motion.p>
+        <RegistrationForm />
+      </div>
+    </motion.div>
+    <motion.div
+      animate={{ y: [0, 10, 0] }}
+      transition={{ duration: 2, repeat: Infinity }}
+      className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
+    >
+      <ChevronDown className="w-6 h-6 text-rose-600" />
+    </motion.div>
+  </div>
+  
   );
 }
 
