@@ -134,41 +134,42 @@ function RegistrationForm() {
 
 function Hero() {
   return (
-    <div className="relative bg-gradient-to-r from-rose-50 to-rose-100 pt-32 pb-20">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-      >
-        <div className="text-center">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl"
-          >
-            Find Your Perfect Match
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl"
-          >
-            Join millions of happy couples who found their soulmate with HeartMatch. Start your journey to lasting love today.
-          </motion.p>
-          <RegistrationForm />
-        </div>
-      </motion.div>
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
-      >
-        <ChevronDown className="w-6 h-6 text-rose-600" />
-      </motion.div>
-    </div>
+    <div className="relative bg-gradient-to-r from-rose-50 to-rose-100 pt-32 pb-20 bg-[url('/hero.png')] bg-cover bg-center">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+    >
+      <div className="text-center">
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="text-4xl font-bold text-rose-500 sm:text-5xl md:text-6xl"
+        >
+          Find Your Perfect Match
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mt-3 max-w-md mx-auto text-base text-white sm:text-lg md:mt-5 md:text-xl md:max-w-3xl"
+        >
+          Join millions of happy couples who found their soulmate with HeartMatch. Start your journey to lasting love today.
+        </motion.p>
+        <RegistrationForm />
+      </div>
+    </motion.div>
+    <motion.div
+      animate={{ y: [0, 10, 0] }}
+      transition={{ duration: 2, repeat: Infinity }}
+      className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
+    >
+      <ChevronDown className="w-6 h-6 text-rose-600" />
+    </motion.div>
+  </div>
+  
   );
 }
 
@@ -253,19 +254,19 @@ function SuccessStories() {
       names: "Sarah & John",
       location: "New York, USA",
       story: "We found each other on HeartMatch and got married within a year. It was meant to be!",
-      image: "random/400x300?wedding&sig=1"
+      image: "story1-400x300.png?wedding&sig=1"
     },
     {
       names: "Maria & David",
       location: "London, UK",
       story: "After countless failed dates, HeartMatch's matching system helped us find true love.",
-      image: "random/400x300?couple&sig=2"
+      image: "story2-400x300.png?couple&sig=2"
     },
     {
       names: "Priya & Raj",
       location: "Mumbai, India",
       story: "Thanks to HeartMatch, we found our perfect match despite living in different cities.",
-      image: "random/400x300?wedding&sig=3"
+      image: "story3-400x300.png?wedding&sig=3"
     }
   ];
 
@@ -296,7 +297,7 @@ function SuccessStories() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 + index * 0.2 }}
-                src={`https://source.unsplash.com/${story.image}`}
+                src={story.image}
                 alt="Success Story"
                 className="w-full h-48 object-cover rounded-md mb-4"
               />
@@ -339,7 +340,7 @@ function BlogSection() {
       excerpt: "Discover how modern technology is revolutionizing the way we find and maintain relationships.",
       date: "Mar 15, 2024",
       readTime: "5 min read",
-      image: "random/600x400?dating&sig=1",
+      image: "blog1-600x400.png?dating&sig=1",
       author: "Emma Wilson"
     },
     {
@@ -347,7 +348,7 @@ function BlogSection() {
       excerpt: "Expert advice on making your first meeting memorable and meaningful.",
       date: "Mar 12, 2024",
       readTime: "4 min read",
-      image: "random/600x400?coffee&sig=2",
+      image: "blog2-600x400.png?coffee&sig=2",
       author: "James Miller"
     },
     {
@@ -355,7 +356,7 @@ function BlogSection() {
       excerpt: "Learn about the key factors that contribute to long-lasting relationships.",
       date: "Mar 10, 2024",
       readTime: "6 min read",
-      image: "random/600x400?couple&sig=3",
+      image: "blog3-600x400.png?couple&sig=3",
       author: "Dr. Sarah Chen"
     }
   ];
@@ -383,7 +384,7 @@ function BlogSection() {
               className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
             >
               <img
-                src={`https://source.unsplash.com/${blog.image}`}
+                src={blog.image}
                 alt={blog.title}
                 className="w-full h-48 object-cover"
               />
@@ -420,19 +421,19 @@ function TestimonialsSection() {
       quote: "HeartMatch's unique matching algorithm helped me find my soulmate. We're getting married next month!",
       author: "Jessica, 28",
       location: "San Francisco",
-      image: "random/100x100?woman&sig=1"
+      image: "tesimonial1-100x100.png?woman&sig=1"
     },
     {
       quote: "The quality of matches and the security features made me feel safe throughout my journey.",
       author: "Michael, 34",
       location: "Toronto",
-      image: "random/100x100?man&sig=2"
+      image: "testimonial2-100x100.png?man&sig=2"
     },
     {
       quote: "I appreciate how HeartMatch focuses on meaningful connections rather than superficial matches.",
       author: "Sophia, 31",
       location: "London",
-      image: "random/100x100?woman&sig=3"
+      image: "testimonial3-100x100.png?woman&sig=3"
     }
   ];
 
@@ -460,7 +461,7 @@ function TestimonialsSection() {
             >
               <div className="flex items-center mb-4">
                 <img
-                  src={`https://source.unsplash.com/${testimonial.image}`}
+                  src={testimonial.image}
                   alt={testimonial.author}
                   className="w-12 h-12 rounded-full object-cover"
                 />
