@@ -1,97 +1,119 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import  { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Search, Users, MessageCircle, ChevronDown, Shield, Gift, Crown, Bell, Menu, Mail, Facebook, Twitter, Instagram, Youtube, Calendar, Clock, User, ArrowRight } from 'lucide-react';
 import { Button } from './components/ui/button';
+import FindMatches from './pages/FindMatches';
+import SuccesStories from './pages/SuccessStories';
+import PremiumPlans from './pages/PremiumPlans';
+import Help from './pages/HelpPage';
+import Login from './pages/Login';
+import Register from './pages/Register';
+
+
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { label: "Find Matches", href: "#" },
-    { label: "Success Stories", href: "#" },
-    { label: "Premium Plans", href: "#" },
-    { label: "Help", href: "#" },
+    { label: "Find Matches", href: "/matches" },
+    { label: "Success Stories", href: "/succes" },
+    { label: "Premium Plans", href: "/plans" },
+    { label: "Help", href: "/help" },
   ];
-
   return (
-    <motion.nav 
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 100 }}
-      className="bg-white shadow-md fixed w-full z-50"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center text-rose-600"
-            >
-              <Heart className="h-8 w-8" />
-              <span className="ml-2 text-xl font-bold">HeartMatch</span>
+    <motion.nav
+  initial={{ y: -100 }}
+  animate={{ y: 0 }}
+  transition={{ type: "spring", stiffness: 100 }}
+  className="bg-white fixed shadow-md fixed top-0 left-0 right-0 w-full z-50 backdrop-blur-md bg-opacity-90"
+>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex justify-between h-16">
+      {/* Logo */}
+      <div className="flex items-center">
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          className="flex items-center text-rose-600"
+        >
+          <Heart className="h-8 w-8" />
+          <span className="ml-2 text-xl font-bold">HeartMatch</span>
+        </motion.div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex ml-10 space-x-8">
+          {navItems.map((item, index) => (
+            <motion.div key={index} whileHover={{ scale: 1.05 }}>
+              <Link
+                to={item.href}
+                className="text-gray-600 hover:text-rose-600 px-3 py-2 text-sm font-medium"
+              >
+                {item.label}
+              </Link>
             </motion.div>
-            <div className="hidden md:flex ml-10 space-x-8">
-              {navItems.map((item, index) => (
-                <motion.a
-                  key={index}
-                  href={item.href}
-                  whileHover={{ scale: 1.05 }}
-                  className="text-gray-600 hover:text-rose-600 px-3 py-2 text-sm font-medium"
-                >
-                  {item.label}
-                </motion.a>
-              ))}
-            </div>
-          </div>
-          <div className="flex items-center space-x-4">
-            <div className="hidden md:flex items-center space-x-4">
-              <motion.div whileHover={{ scale: 1.05 }}>
-                <Button variant="ghost">Login</Button>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }}>
-                <Button>Register Free</Button>
-              </motion.div>
-            </div>
-            <div className="md:hidden">
-              <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                <Menu className="h-6 w-6" />
-              </Button>
-            </div>
-          </div>
+          ))}
         </div>
-        
-        {/* Mobile menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden"
-            >
-              <div className="px-2 pt-2 pb-3 space-y-1">
-                {navItems.map((item, index) => (
-                  <a
-                    key={index}
-                    href={item.href}
-                    className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-rose-600"
-                  >
-                    {item.label}
-                  </a>
-                ))}
-                <Button variant="ghost" className="w-full text-left">Login</Button>
-                <Button className="w-full">Register Free</Button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
-    </motion.nav>
+
+      {/* Buttons */}
+      <div className="flex items-center space-x-4">
+        <div className="hidden md:flex items-center space-x-4">
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <Link to="/login">
+              <Button variant="ghost">Login</Button>
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <Link to="/register">
+              <Button>Register</Button>
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <Menu className="h-6 w-6" />
+          </Button>
+        </div>
+      </div>
+    </div>
+
+    {/* Mobile Menu */}
+    <AnimatePresence>
+      {isMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          className="md:hidden"
+        >
+          <div className="px-2 pt-2 pb-3 space-y-1">
+            {navItems.map((item, index) => (
+              <Link
+                key={index}
+                to={item.href}
+                className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-rose-600"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <Link to="/login">
+              <Button variant="ghost" className="w-full text-left">Login</Button>
+            </Link>
+            <Link to="/register">
+              <Button className="w-full">Register</Button>
+            </Link>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </div>
+</motion.nav>
+
   );
 }
-
 function RegistrationForm() {
   return (
     <motion.div
@@ -135,41 +157,41 @@ function RegistrationForm() {
 function Hero() {
   return (
     <div className="relative bg-gradient-to-r from-rose-50 to-rose-100 pt-32 pb-20 bg-[url('/hero.png')] bg-cover bg-center">
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-    >
-      <div className="text-center">
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-4xl font-bold text-rose-500 sm:text-5xl md:text-6xl"
-        >
-          Find Your Perfect Match
-        </motion.h1>
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="mt-3 max-w-md mx-auto text-base text-white sm:text-lg md:mt-5 md:text-xl md:max-w-3xl"
-        >
-          Join millions of happy couples who found their soulmate with HeartMatch. Start your journey to lasting love today.
-        </motion.p>
-        <RegistrationForm />
-      </div>
-    </motion.div>
-    <motion.div
-      animate={{ y: [0, 10, 0] }}
-      transition={{ duration: 2, repeat: Infinity }}
-      className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
-    >
-      <ChevronDown className="w-6 h-6 text-rose-600" />
-    </motion.div>
-  </div>
-  
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        <div className="text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-4xl font-bold text-rose-500 sm:text-5xl md:text-6xl"
+          >
+            Find Your Perfect Match
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mt-3 max-w-md mx-auto text-base text-white sm:text-lg md:mt-5 md:text-xl md:max-w-3xl"
+          >
+            Join millions of happy couples who found their soulmate with HeartMatch. Start your journey to lasting love today.
+          </motion.p>
+          <RegistrationForm />
+        </div>
+      </motion.div>
+      <motion.div
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
+      >
+        <ChevronDown className="w-6 h-6 text-rose-600" />
+      </motion.div>
+    </div>
+
   );
 }
 
@@ -230,7 +252,7 @@ function Features() {
               whileHover={{ scale: 1.05, y: -5 }}
               className="relative p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all"
             >
-              <motion.div 
+              <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.2 + index * 0.2 }}
@@ -301,7 +323,7 @@ function SuccessStories() {
                 alt="Success Story"
                 className="w-full h-48 object-cover rounded-md mb-4"
               />
-              <motion.h3 
+              <motion.h3
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 + index * 0.2 }}
@@ -317,7 +339,7 @@ function SuccessStories() {
               >
                 {story.location}
               </motion.p>
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 + index * 0.2 }}
@@ -530,7 +552,7 @@ function Footer() {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">How It Works</a></li>
+              <li><a href="/success" className="hover:text-white transition-colors">How It Works</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Success Stories</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
             </ul>
@@ -538,7 +560,7 @@ function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Support</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
+              <li><a href="/help" className="hover:text-white transition-colors">Help Center</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Safety Tips</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
@@ -581,29 +603,39 @@ function Footer() {
   );
 }
 
-function App() {
+export default function App() {
   return (
     <Router>
       <AnimatePresence>
         <div className="min-h-screen bg-gray-50">
           <Navbar />
           <Routes>
-            <Route path="/" element={
-              <>
-                <Hero />
-                <Features />
-                <SuccessStories />
-                <BlogSection />
-                <TestimonialsSection />
-                <NewsletterSection />
-                <Footer />
-              </>
-            } />
+            {/* Home Page with Sections */}
+            <Route
+              path="/"
+              element={
+                <>
+                  <Hero />
+                  <Features />
+                  <SuccessStories />
+                  <BlogSection />
+                  <TestimonialsSection />
+                  <NewsletterSection />
+                  <Footer />
+                </>
+              }
+            />
+            
+            {/* Other Pages */}
+            <Route path="/matches" element={<FindMatches />} />
+            <Route path="/succes" element={<SuccesStories />} /> {/* Fixed typo */}
+            <Route path="/plans" element={<PremiumPlans />} />
+            <Route path="/help" element={<Help />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </div>
       </AnimatePresence>
     </Router>
   );
 }
-
-export default App;
